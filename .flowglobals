@@ -1,0 +1,6 @@
+declare module 'material-ui' {
+    declare var exports: any
+}
+declare module 'axios' {
+    declare var exports: any
+}

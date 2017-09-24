@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -8,7 +10,7 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
-const styles = theme => ({
+const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
     marginTop: 0,
     width: '100%',
