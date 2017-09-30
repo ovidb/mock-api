@@ -1,18 +1,11 @@
 import 'typeface-roboto';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import reduxThunk from 'redux-thunk';§
-
+import configureStore from './store/configureStore.dev';
+import rootSaga from './sagas';
 import App from './components/App';
-import reducers from './reducers';
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+const store = configureStore();
+store.runSaga(rootSaga);
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.querySelector('#root'),
-);
+ReactDOM.render(<App store={store} />, document.getElementById('root'));
