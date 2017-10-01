@@ -2,33 +2,44 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withStyles } from 'material-ui/styles';
 
 import { fetchUser } from '../actions';
 
 import Header from './Header';
+import Landing from './Landing';
+import Dashboard from './Dashboard';
 
-const Dashboard = () => <h2>Dashboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
-const Landing = () => <h2>Landing</h2>;
 
+const styles = theme => ({ // eslint-disable-line no-unused-vars
+  page: {
+    padding: 10,
+  },
+});
 
 class Main extends Component {
-
   componentDidMount() {
     this.props.fetchUser();
   }
 
   render() {
-    return (<div>
-      <BrowserRouter>
-        <div>
-          <Header/>
-          <Route exact path="/" component={Landing}/>
-          <Route exact path="/surveys" component={Dashboard}/>
-          <Route path="/surveys/new" component={SurveyNew}/>
-        </div>
-      </BrowserRouter>
-    </div>)
+    const { classes } = this.props;
+
+    return (
+      <div>
+        <BrowserRouter>
+          <div>
+            <Header />
+            <div className={classes.page}>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/surveys" component={Dashboard} />
+              <Route path="/surveys/new" component={SurveyNew} />
+            </div>
+          </div>
+        </BrowserRouter>
+      </div>
+    );
   }
 }
 
@@ -36,4 +47,4 @@ Main.propTypes = {
   fetchUser: PropTypes.func,
 };
 
-export default connect(null, { fetchUser })(Main);
+export default connect(null, { fetchUser })(withStyles(styles)(Main));

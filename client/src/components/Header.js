@@ -8,6 +8,9 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import { grey } from 'material-ui/colors';
+
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   // eslint-disable-line no-unused-vars
@@ -22,6 +25,10 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
+  brand: {
+    textDecoration: 'none',
+    color: grey[50],
+  }
 });
 
 const LoginWithGoogle = () => (
@@ -62,7 +69,9 @@ class Header extends Component {
               <MenuIcon />
             </IconButton>
             <Typography type="title" color="inherit" className={classes.flex}>
-              Title
+              <Link className={classes.brand} to={auth ? '/surveys' : '/'}>
+                Plexhex
+              </Link>
             </Typography>
             <LoginButton loginState={auth} />
           </Toolbar>
