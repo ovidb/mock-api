@@ -1,6 +1,6 @@
 const passport = require('passport');
 
-module.exports = (app) => {
+module.exports = app => {
   app.get(
     '/auth/google',
     passport.authenticate('google', {
@@ -12,8 +12,8 @@ module.exports = (app) => {
     '/auth/google/callback',
     passport.authenticate('google'),
     (req, res) => {
-      res.redirect('/surveys');
-    }
+      res.redirect('/');
+    },
   );
 
   app.get('/api/current-user', (req, res) => {

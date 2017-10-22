@@ -21,6 +21,34 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
+require('./routes/userRoutes')(app);
+
+app.get('/', (req, res) => {
+  let adminContent = `
+    <div>
+      Not Logged in.
+      Use <a href="/auth/google">the Authentication Route</a>. You could
+      also look at details about <a href="/api/current-user">yourself</a>
+    </div>
+  `;
+  if (req.user) {
+    adminContent = `
+      <div>
+        Logged Int <a href="/admins">the Admins route</a>
+        or you can <a href="/api/logout">Logout</a>.
+      </div>
+    `;
+  }
+  res.send(`
+    <div>
+      <h4>MockUp API</h4>
+      <div>
+        Get USERS <a href="/users">the Users route</a>
+      </div>
+      ${adminContent}
+    </div>
+  `);
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
