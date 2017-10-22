@@ -1,5 +1,5 @@
 {
-  "name": "plexhex",
+  "name": "ovidb-mock-api",
   "version": "1.0.0",
   "description": "Email sending service",
   "main": "index.js",
